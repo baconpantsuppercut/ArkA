@@ -17,3 +17,8 @@ Right now, contributions are especially welcome in the form of:
 2. Create a branch for your changes.
 3. Make your edits or additions.
 4. Open a Pull Request with a clear description.
+
+- Review the manifesto and leave a comment in Discussions.
+- Choose one “good first issue” and add a comment “I’ll work on this”.
+- Propose video schema fields in protocol/video.schema.json (draft).
+- Share the project with a friend — builders + creators welcome.
