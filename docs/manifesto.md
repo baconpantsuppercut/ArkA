@@ -1,96 +1,89 @@
-# Arka Manifesto
+# arkA Manifesto
 
-Arka is a community-built attempt to redefine how video exists on the internet.
+arkA is a collective attempt to reclaim video as an open medium.
 
-We believe:
+Modern platforms decide:
+- what you may say  
+- who may speak  
+- which truths may circulate  
+- which creators get buried  
 
-## 1. People deserve access to uncensored, unmanipulated expression.
-Video has become one of the most powerful forms of communication, yet most
-platforms today control:
-- what can be seen
-- how it is ranked
-- which creators are allowed to thrive
-- and which truths are allowed to exist
+arkA rejects this.
 
-Arka rejects this.
+arkA does not censor.  
+arkA does not rank by ideology.  
+arkA does not throttle reach.  
+arkA is simply **a protocol** for free expression.
 
-Arka does not exist to censor.  
-Arka does not exist to manipulate.  
-Arka exists to **enable sovereignty.**
+---
 
-## 2. Creators deserve ownership, not extraction.
-Creators should keep their content, their audience, and their income.  
-Platforms should not be gatekeepers or landlords.
+## 1. Expression belongs to people, not platforms.
 
-Arka aims for:
-- creator-controlled monetization
-- portable identity
-- transparent algorithms
-- permissionless publishing
+arkA is built on the belief that communication should not be dependent on corporate permission.  
+The world needs spaces where full human expression can exist — even expression some may dislike.
 
-## 3. Children and neurodiverse individuals deserve better digital experiences.
-The modern algorithm is optimized for:
-- watch time
-- addiction
-- stimulation
+---
 
-Not learning.  
-Not development.  
-Not safety.
+## 2. Creators should own their work and their income.
 
-Arka will include alternative clients like **Arka Kids** — designed for:
-- developmental growth
-- neurodiverse needs
-- sensory-appropriate pacing
-- parent-centered controls
-- no algorithmic exploitation
+You built the content.  
+You built the audience.  
+You deserve the value.
 
-## 4. Open protocols create healthy ecosystems.
-The internet flourished because protocols (HTTP, SMTP, TCP/IP) were open.
+arkA supports:
+- creator-controlled monetization  
+- transparent, open interfaces  
+- no lock-in  
+- no platform rent extraction  
 
-Arka seeks to do the same for video:
-- open schemas
-- open metadata
-- open discovery
-- open clients
-- open governance
+---
 
-Centralized platforms can be captured.  
-Protocols belong to the world.
+## 3. Children and neurodiverse individuals deserve better digital environments.
 
-## 5. Hardware should serve people, not the other way around.
-Kids and special-needs individuals often need:
-- locked-down devices
-- rugged physical protection
-- simplified interfaces
-- predictable feedback
+arkA Kids is a priority, not an afterthought.
 
-Arka intends to explore open device concepts that pair with its software ecosystem.
+It aims for:
+- cognitive-friendly pacing  
+- sensory-appropriate design  
+- guided learning  
+- no overstimulation loops  
+- no algorithmic addiction  
+
+---
+
+## 4. Protocols > Platforms.
+
+HTTP, SMTP, and RSS changed the world by being open.
+
+arkA embraces the same principles:
+- open schemas  
+- open index formats  
+- open client implementations  
+- open governance  
+
+No corporation owns arkA.  
+It cannot be captured.
+
+---
+
+## 5. Simplicity first.
+
+The MVP of arkA is intentionally small:
+- a JSON schema  
+- a static index  
+- a tiny web client  
+- basic IPFS compatibility  
+
+From simplicity grows ecosystems.
+
+---
 
 ## 6. The community decides the future.
-Arka is not a corporation.  
-It is not controlled by one person or one company.
 
-Anyone may:
-- contribute
-- fork
-- build clients
-- propose changes
-- improve the protocol
-- shape the culture
+arkA is not a company.  
+arkA is an invitation.  
+Anyone may contribute, build clients, fork the protocol, expand the ecosystem or shape governance.
 
-This is a collective effort.
+If you are reading this, **you are part of the community**.
 
-## 7. Arka is a seed.
-This project begins small — as documents, ideas, prototypes.
-
-It will grow through the hands of the people who believe the world needs:
-- a place for uncensored truth  
-- a place for creators to thrive  
-- a safe refuge for children  
-- an open ecosystem that no single entity can control  
-
-If you are reading this:
-**you are invited.**
-
-Welcome to Arka.
+Welcome to arkA.
