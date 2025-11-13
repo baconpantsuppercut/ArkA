@@ -1,28 +1,38 @@
-# Arka MVP (Minimum Viable Product)
+# arkA MVP
 
-This document defines the smallest possible implementation of Arka that proves
-the concept end to end.
-
-The MVP should be simple, understandable, forkable, and deployable by anyone.
+This document defines the smallest, simplest implementation of arkA that proves the concept.
 
 ---
 
-## Core Requirements
+## MVP Components
 
-### 1. Static Video Index (JSON)
-A single JSON file that lists available videos.
+### 1. Video Schema (JSON)
+A minimal JSON representation of a video:
+- id  
+- title  
+- creator  
+- thumbnail_uri  
+- media_uri  
+- tags  
+- created_at  
+
+Stored at:
+`protocol/video.schema.json`
+
+---
+
+### 2. Index Schema (JSON)
+A JSON file listing all videos.
 
 Example:
-
 ```json
 [
   {
     "id": "demo-001",
-    "title": "Welcome to Arka",
+    "title": "Welcome to arkA",
+    "thumbnail_uri": "ipfs://...",
+    "media_uri": "ipfs://...",
     "creator": "demo",
-    "thumbnail_uri": "ipfs://examplehash",
-    "media_uri": "ipfs://examplehash",
-    "tags": ["demo"],
-    "created_at": "2025-01-01"
+    "tags": []
   }
 ]
