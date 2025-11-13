@@ -1,5 +1,8 @@
 # Arka
 
+> Status: Early concept & documentation phase.  
+> There is no production code yet. We are currently shaping the protocol and architecture in the open.
+
 **Arka** is an open, decentralized video ecosystem:
 
 - A protocol for storing and indexing video (and other media) in a censorship-resistant way.
