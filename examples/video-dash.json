@@ -1,0 +1,25 @@
+{
+  "title": "Sample DASH Video",
+  "description": "A minimal example demonstrating MPEG-DASH inside an arkA source array.",
+  "creator": {
+    "name": "Example Creator"
+  },
+  "duration": 185,
+  "sources": [
+    {
+      "type": "dash",
+      "manifest": "https://cdn.example.com/media/example/manifest.mpd",
+      "profiles": ["on-demand"],
+      "codecs": ["h264", "aac"]
+    },
+    {
+      "type": "file",
+      "format": "mp4",
+      "url": "https://cdn.example.com/media/example/video-1080p.mp4"
+    }
+  ],
+  "tags": ["example", "dash", "adaptive-streaming"],
+  "family_safety": {
+    "is_safe": true
+  }
+}
