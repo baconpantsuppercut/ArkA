@@ -1,11 +1,25 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8" />
-  <title>arkA Reference Client</title>
-</head>
-<body>
-  <div id="app"></div>
-  <script type="module" src="./app.ts"></script>
-</body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>arkA — Hello World Client</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <main>
+      <h1>arkA — Hello World</h1>
+      <p>
+        This is a minimal reference client for the arkA video protocol.
+        It will load a sample <code>index.json</code> file and list the videos it finds.
+      </p>
+
+      <button id="loadVideos">Load sample videos</button>
+
+      <section id="output" aria-live="polite" style="margin-top: 1.5rem;">
+        <!-- Video list will be rendered here -->
+      </section>
+    </main>
+
+    <script src="js/main.js"></script>
+  </body>
 </html>
