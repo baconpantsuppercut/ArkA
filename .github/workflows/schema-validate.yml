@@ -1,0 +1,29 @@
+name: Validate arkA Schema
+
+on:
+  push:
+    paths:
+      - "schema/**"
+  pull_request:
+    paths:
+      - "schema/**"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      
+      - name: Install AJV CLI
+        run: npm install -g ajv-cli
+
+      - name: Validate schema
+        run: |
+          ajv validate -s schema/arkA.schema.json -d schema/example.json
