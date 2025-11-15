@@ -1,0 +1,16 @@
+name: Validate arkA Schemas
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install AJV CLI
+        run: npm install -g ajv-cli
+      - name: Validate schema
+        run: ajv compile -s schema/video.schema.json
