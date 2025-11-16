@@ -1,29 +1,26 @@
-name: Validate arkA Schema
+name: Validate Schemas
 
 on:
   push:
-    paths:
-      - "schema/**"
+    branches: [ main ]
   pull_request:
-    paths:
-      - "schema/**"
+    branches: [ main ]
 
 jobs:
-  validate:
+  validate-schema:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Install Node.js
-        uses: actions/setup-node@v3
+      - name: Set up Node
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
-      
-      - name: Install AJV CLI
-        run: npm install -g ajv-cli
+          node-version: 20
 
-      - name: Validate schema
-        run: |
-          ajv validate -s schema/arkA.schema.json -d schema/example.json
+      - name: Install dependencies
+        run: npm install
+
+      - name: Lint JSON schema & examples
+        run: npm run lint:schema
