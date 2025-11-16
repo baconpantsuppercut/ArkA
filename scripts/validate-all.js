@@ -1,45 +1,57 @@
-// scripts/validate-all.js
-// Validate only per-video example files against the video schema.
+import fs from "fs/promises";
+import path from "path";
+import Ajv from "ajv";
 
-import fs from 'node:fs';
-import path from 'node:path';
-import Ajv from 'ajv';
+const ajv = new Ajv({
+  allErrors: true,
+  strict: false,
+});
 
-const ajv = new Ajv({ allErrors: true, strict: false });
+const SCHEMA_PATH = "schema/video.schema.json";
+const EXAMPLES_DIR = "examples";
 
-const schemaPath = path.join('schema', 'video.schema.json');
-const schemaRaw = fs.readFileSync(schemaPath, 'utf-8');
-const schema = JSON.parse(schemaRaw);
-const validate = ajv.compile(schema);
+async function loadSchema() {
+  const raw = await fs.readFile(SCHEMA_PATH, "utf-8");
+  const schema = JSON.parse(raw);
+  return ajv.compile(schema);
+}
 
-const examplesDir = 'examples';
+async function validateExamples() {
+  const validate = await loadSchema();
+  const files = await fs.readdir(EXAMPLES_DIR);
 
-// Only validate files that start with "video-" and end with ".json"
-const exampleFiles = fs
-  .readdirSync(examplesDir)
-  .filter((f) => f.startsWith('video-') && f.endsWith('.json'));
+  let allOk = true;
 
-let hasErrors = false;
+  for (const file of files) {
+    // Only validate per-video examples, e.g. video-basic.json, video-hls.json, etc.
+    if (!file.endsWith(".json")) continue;
+    if (!file.startsWith("video-")) continue;
 
-for (const file of exampleFiles) {
-  const fullPath = path.join(examplesDir, file);
-  console.log(`Validating ${file}...`);
+    const fullPath = path.join(EXAMPLES_DIR, file);
+    const dataRaw = await fs.readFile(fullPath, "utf-8");
+    const data = JSON.parse(dataRaw);
 
-  const raw = fs.readFileSync(fullPath, 'utf-8');
-  const data = JSON.parse(raw);
+    console.log(`\nValidating ${file}...`);
 
-  const valid = validate(data);
-  if (!valid) {
-    hasErrors = true;
-    console.log(`${fullPath} invalid`);
-    console.log(validate.errors);
-    console.log();
+    const ok = validate(data);
+    if (!ok) {
+      allOk = false;
+      console.error(`${fullPath} invalid`);
+      console.error(validate.errors);
+    } else {
+      console.log(`${fullPath} is valid ✅`);
+    }
+  }
+
+  if (!allOk) {
+    console.error("\n❌ Some example files FAILED validation.");
+    process.exit(1);
+  } else {
+    console.log("\n✅ All example files passed validation.");
   }
 }
 
-if (hasErrors) {
-  console.error('❌ Some example files FAILED validation.');
+validateExamples().catch((err) => {
+  console.error("Validation run failed:", err);
   process.exit(1);
-} else {
-  console.log('✅ All per-video example files passed validation.');
-}
+});
