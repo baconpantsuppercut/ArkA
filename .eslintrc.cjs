@@ -1,12 +1,28 @@
 module.exports = {
+  root: true,
   env: {
-    browser: true, // document, window, fetch, etc.
-    node: true,    // require, __dirname, process, console, etc.
-    es2021: true
+    browser: true,
+    node: true,
+    es2022: true
   },
   extends: ["eslint:recommended"],
-  ignorePatterns: ["dist/**", "node_modules/**"],
+  parserOptions: {
+    ecmaVersion: "latest",
+    sourceType: "script"
+  },
+  ignorePatterns: ["dist/", "node_modules/"],
   rules: {
-    "no-console": "off"
-  }
+    // We log in scripts and client – that's fine for this project.
+    "no-console": "off",
+    "no-process-exit": "off"
+  },
+  overrides: [
+    {
+      files: ["scripts/**/*.js"],
+      env: {
+        node: true,
+        browser: false
+      }
+    }
+  ]
 };
