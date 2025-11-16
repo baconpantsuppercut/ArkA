@@ -1,67 +1,19 @@
 {
-  "id": "arkv_kids_001",
-  "title": "Colors and Shapes – Calm Learning Session",
-  "description": "A gentle, structured video lesson for autistic and neurodiverse children, with predictable pacing and low visual noise.",
-  "duration": 900,
-  "language": "en",
-  "created_at": "2025-11-15T14:00:00Z",
-  "updated_at": "2025-11-15T14:00:00Z",
-  "tags": ["kids", "autism-friendly", "education", "colors", "shapes"],
-  "categories": ["education", "kids"],
-  "age_rating": "G",
-  "creator": {
-    "id": "educator_001",
-    "name": "arkA Kids Lab",
-    "channel": "arkA Kids"
-  },
+  "id": "video-kids-lesson-001",
+  "title": "Calm learning session for kids",
+  "description": "Slow-paced, low-stimulation educational content for young children.",
+  "createdAt": "2025-01-01T00:00:00Z",
+  "thumbnail": "https://example.com/thumbs/kids.jpg",
+  "duration": 600,
   "sources": [
     {
-      "type": "file",
-      "url": "https://cdn.example.com/kids/colors-shapes-1080p.mp4",
-      "format": "mp4",
-      "resolution": "1920x1080",
-      "bitrate": 3500000
-    }
-  ],
-  "thumbnails": [
-    {
-      "url": "https://cdn.example.com/kids/colors-shapes-cover.jpg",
-      "width": 1280,
-      "height": 720,
-      "type": "cover"
-    }
-  ],
-  "captions": [
-    {
-      "language": "en",
-      "url": "https://cdn.example.com/kids/colors-shapes-en.vtt",
-      "format": "vtt"
+      "storageType": "http",
+      "uri": "https://example.com/videos/kids-lesson.mp4"
     }
   ],
   "safety": {
-    "kids_mode": true,
-    "neurodiverse_friendly": true,
-    "no_flashing_lights": true,
-    "no_jump_cuts": true,
-    "low_audio_variance": true
-  },
-  "ext": {
-    "kids": {
-      "intended_age_range": "5-9",
-      "session_type": "calm",
-      "supports_nonverbal_children": true,
-      "pacing": "slow",
-      "repetition_level": "high",
-      "recommended_viewing_context": "supervised or co-watched"
-    },
-    "education": {
-      "subjects": ["colors", "shapes", "visual recognition"],
-      "learning_objectives": [
-        "Identify basic colors",
-        "Recognize simple shapes",
-        "Support visual attention without overstimulation"
-      ],
-      "difficulty_level": "beginner"
-    }
+    "rating": "G",
+    "overstimulation": "low",
+    "sensoryNotes": "Soft colors, gentle music, no flashing lights."
   }
 }
