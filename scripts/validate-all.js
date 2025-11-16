@@ -1,52 +1,55 @@
 /* eslint-disable no-console */
-
-const fs = require("fs");
 const path = require("path");
-const Ajv = require("ajv").default;
+const fs = require("fs");
+const Ajv = require("ajv");
 const addFormats = require("ajv-formats");
 
-// AJV instance with formats enabled
 const ajv = new Ajv({
   allErrors: true,
   strict: false
 });
+
+// Enable date-time and other standard formats
 addFormats(ajv);
 
-// Load the video schema
 const schemaPath = path.join(__dirname, "..", "schema", "video.schema.json");
-const schemaRaw = fs.readFileSync(schemaPath, "utf8");
-const schema = JSON.parse(schemaRaw);
+const examplesDir = path.join(__dirname, "..", "examples");
+
+const schemaJson = fs.readFileSync(schemaPath, "utf8");
+const schema = JSON.parse(schemaJson);
 
 const validate = ajv.compile(schema);
 
-// Only validate the video example files, not index.json
-const examplesDir = path.join(__dirname, "..", "examples");
-const exampleFiles = fs
-  .readdirSync(examplesDir)
-  .filter((file) => file.startsWith("video-") && file.endsWith(".json"));
+// Only validate the VIDEO example files, not index.json
+const exampleFiles = [
+  "video-basic.json",
+  "video-dash.json",
+  "video-hls.json",
+  "video-kids-lesson.json"
+];
 
 console.log("Validating example files against schema...");
 
 let hasError = false;
 
-for (const file of exampleFiles) {
-  const fullPath = path.join(examplesDir, file);
+for (const fileName of exampleFiles) {
+  const fullPath = path.join(examplesDir, fileName);
   const raw = fs.readFileSync(fullPath, "utf8");
   const data = JSON.parse(raw);
 
   const valid = validate(data);
-
-  if (valid) {
-    console.log(`✅ ${file} is valid.`);
-  } else {
+  if (!valid) {
     hasError = true;
-    console.log(`❌ ${file} is INVALID:`);
-    console.log(validate.errors);
+    console.error(`❌ ${fileName} is INVALID:`);
+    console.error(validate.errors);
+  } else {
+    console.log(`✅ ${fileName} is valid.`);
   }
 }
 
 if (hasError) {
+  console.error("❌ One or more example files failed validation.");
   process.exit(1);
 } else {
-  console.log("✅ All example video files are valid.");
+  console.log("✅ All example files are valid.");
 }
