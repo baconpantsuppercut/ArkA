@@ -1,21 +1,26 @@
 /* eslint-env node */
 
+// scripts/validate-all.js
 const fs = require("fs");
 const path = require("path");
 const Ajv = require("ajv");
 
-const ajv = new Ajv({ allErrors: true });
+const ajv = new Ajv({
+  allErrors: true
+});
 
 const schemaPath = path.join(__dirname, "..", "schema", "video.schema.json");
-const schema = JSON.parse(fs.readFileSync(schemaPath, "utf8"));
-const validate = ajv.compile(schema);
-
 const examplesDir = path.join(__dirname, "..", "examples");
 
-// Only validate files that start with "video-"
+const schemaRaw = fs.readFileSync(schemaPath, "utf8");
+const schema = JSON.parse(schemaRaw);
+
+const validate = ajv.compile(schema);
+
+// Grab every .json file in examples/
 const exampleFiles = fs
   .readdirSync(examplesDir)
-  .filter((file) => file.startsWith("video-") && file.endsWith(".json"));
+  .filter((file) => file.endsWith(".json"));
 
 console.log("Validating example files against schema...");
 
@@ -27,17 +32,17 @@ for (const file of exampleFiles) {
 
   const valid = validate(data);
 
-  if (!valid) {
-    hasErrors = true;
-    console.error(`❌ ${file} is INVALID:`);
-    console.error(validate.errors);
-  } else {
+  if (valid) {
     console.log(`✅ ${file} is valid.`);
+  } else {
+    hasErrors = true;
+    console.log(`❌ ${file} is INVALID:`);
+    console.log(validate.errors);
   }
 }
 
 if (hasErrors) {
-  process.exit(1);
+  process.exitCode = 1;
 } else {
-  console.log("✅ All example files passed validation.");
+  console.log("✅ All example files are valid.");
 }
