@@ -11,5 +11,8 @@
     "ajv": "^8.0.0",
     "rollup": "^3.0.0",
     "gh-pages": "^5.0.0"
+  },
+  "scripts": {
+    "validate": "node scripts/validate-schema.js"
   }
 }
