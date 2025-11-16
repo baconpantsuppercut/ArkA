@@ -2,28 +2,28 @@ name: Lint Code
 
 on:
   push:
-    paths:
-      - "**/*.js"
-      - "**/*.md"
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   lint:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
-      - name: Install ESLint + Prettier
-        run: npm install -g eslint prettier markdownlint-cli
+      - name: Install dependencies
+        run: npm install
 
       - name: Lint JavaScript
-        run: eslint .
+        run: npm run lint
 
       - name: Lint Markdown
-        run: markdownlint "**/*.md"
+        run: npx markdownlint "**/*.md"
