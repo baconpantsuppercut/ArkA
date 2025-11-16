@@ -1,27 +1,35 @@
-// eslint.config.js
-// Flat config for ESLint 9, using CommonJS so Node can load it without drama.
+import js from "@eslint/js";
 
-/** @type {import("eslint").Linter.FlatConfig[]} */
-const js = require("@eslint/js");
-
-module.exports = [
+export default [
+  // Global settings for browser JS (client)
   {
-    // Start from ESLint's recommended rules
-    ...js.configs.recommended,
-    files: ["client/**/*.js", "scripts/**/*.js"],
+    files: ["client/**/*.js"],
     languageOptions: {
+      sourceType: "module",
       globals: {
-        // Browser globals
         document: "readonly",
-        window: "readonly",
+        console: "readonly",
         fetch: "readonly",
-        // Common JS / Node globals used in scripts
+      },
+    },
+    rules: {
+      ...js.configs.recommended.rules,
+    },
+  },
+
+  // Node scripts override (fixes __dirname error)
+  {
+    files: ["scripts/**/*.js"],
+    languageOptions: {
+      sourceType: "module",
+      globals: {
         console: "readonly",
         process: "readonly",
-        module: "readonly",
-        require: "readonly"
-      }
+        __dirname: "readonly",   // <-- THIS FIXES YOUR ERROR
+      },
     },
-    ignores: ["dist/**", "node_modules/**"]
+    rules: {
+      ...js.configs.recommended.rules,
+    },
   }
 ];
