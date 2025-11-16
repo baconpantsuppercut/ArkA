@@ -1,18 +1,17 @@
 {
-  "name": "arka-client",
+  "name": "arka",
   "version": "0.1.0",
-  "description": "Reference static web client for arkA protocol",
+  "description": "Reference static web client and tooling for the arkA protocol",
   "scripts": {
-    "lint:schema": "ajv validate -s schema/video.json -d examples/*.json",
     "build": "rollup -c",
-    "deploy": "gh-pages -d dist"
+    "validate": "node scripts/validate-schema.js",
+    "test": "node scripts/validate-examples.mjs"
   },
   "devDependencies": {
     "ajv": "^8.0.0",
     "rollup": "^3.0.0",
-    "gh-pages": "^5.0.0"
-  },
-  "scripts": {
-    "validate": "node scripts/validate-schema.js"
+    "@rollup/plugin-node-resolve": "^15.0.0",
+    "@rollup/plugin-commonjs": "^25.0.0",
+    "gh-pages": "^6.0.0"
   }
 }
