@@ -8,18 +8,17 @@
     "validate": "node scripts/validate-all.js",
     "lint": "eslint client/**/*.js scripts/**/*.js",
     "lint:schema": "npm run validate",
-    "test": "echo \"No tests yet\"",
-    "deploy": "gh-pages -d dist"
+    "test": "echo \"No tests yet\""
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^25.0.0",
-    "@rollup/plugin-node-resolve": "^15.0.0",
-    "ajv": "^8.0.0",
-    "eslint": "^9.0.0",
+    "ajv": "^8.17.1",
+    "eslint": "^9.9.0",
+    "@eslint/js": "^9.9.0",
     "gh-pages": "^5.0.0",
-    "markdownlint-cli": "^0.39.0",
-    "rollup": "^3.0.0",
-    "typescript": "^5.0.0",
-    "vite": "^5.0.0"
+    "rollup": "^3.29.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-commonjs": "^25.0.8",
+    "vite": "^5.0.0",
+    "typescript": "^5.0.0"
   }
 }
