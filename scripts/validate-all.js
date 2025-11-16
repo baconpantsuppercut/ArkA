@@ -1,48 +1,55 @@
 /* eslint-env node */
 
-// scripts/validate-all.js
 const fs = require("fs");
 const path = require("path");
 const Ajv = require("ajv");
 
 const ajv = new Ajv({
-  allErrors: true
+  allErrors: true,
+  strict: false
 });
 
 const schemaPath = path.join(__dirname, "..", "schema", "video.schema.json");
 const examplesDir = path.join(__dirname, "..", "examples");
 
-const schemaRaw = fs.readFileSync(schemaPath, "utf8");
-const schema = JSON.parse(schemaRaw);
+function loadJson(filePath) {
+  const raw = fs.readFileSync(filePath, "utf8");
+  return JSON.parse(raw);
+}
 
-const validate = ajv.compile(schema);
+function validateExamples() {
+  console.log("Validating example files against schema...");
 
-// Grab every .json file in examples/
-const exampleFiles = fs
-  .readdirSync(examplesDir)
-  .filter((file) => file.endsWith(".json"));
+  const schema = loadJson(schemaPath);
+  const validate = ajv.compile(schema);
 
-console.log("Validating example files against schema...");
+  const exampleFiles = fs
+    .readdirSync(examplesDir)
+    .filter((name) => name.endsWith(".json"));
 
-let hasErrors = false;
+  let hadError = false;
 
-for (const file of exampleFiles) {
-  const fullPath = path.join(examplesDir, file);
-  const data = JSON.parse(fs.readFileSync(fullPath, "utf8"));
+  for (const fileName of exampleFiles) {
+    const fullPath = path.join(examplesDir, fileName);
+    const data = loadJson(fullPath);
 
-  const valid = validate(data);
+    const valid = validate(data);
 
-  if (valid) {
-    console.log(`✅ ${file} is valid.`);
+    if (valid) {
+      console.log(`✅ ${fileName} is valid.`);
+    } else {
+      hadError = true;
+      console.error(`❌ ${fileName} is INVALID:`);
+      console.error(validate.errors);
+    }
+  }
+
+  if (hadError) {
+    console.error("❌ One or more example files failed validation.");
+    process.exitCode = 1;
   } else {
-    hasErrors = true;
-    console.log(`❌ ${file} is INVALID:`);
-    console.log(validate.errors);
+    console.log("✅ All example files passed validation.");
   }
 }
 
-if (hasErrors) {
-  process.exitCode = 1;
-} else {
-  console.log("✅ All example files are valid.");
-}
+validateExamples();
