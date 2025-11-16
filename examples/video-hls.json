@@ -1,10 +1,10 @@
 {
-  "id": "video-hls-001",
-  "title": "HLS streaming example",
-  "description": "Video using HLS playlist.",
-  "createdAt": "2025-01-01T00:00:00Z",
-  "thumbnail": "https://example.com/thumbs/hls.jpg",
-  "duration": 300,
+  "id": "video-hls-demo",
+  "title": "HLS Streaming Demo",
+  "description": "Example video that uses an HLS playlist for adaptive streaming.",
+  "createdAt": "2025-01-02T00:00:00Z",
+  "thumbnail": "https://example.com/thumbnails/hls-demo.jpg",
+  "durationSeconds": 240,
   "sources": [
     {
       "storageType": "http",
@@ -12,6 +12,16 @@
     }
   ],
   "streaming": {
-    "hls": "https://example.com/hls/playlist.m3u8"
+    "hls": "https://example.com/videos/hls/playlist.m3u8"
+  },
+  "creator": {
+    "name": "Example Creator",
+    "avatar": "https://example.com/avatars/example-creator.png",
+    "contact": "mailto:creator@example.com"
+  },
+  "safety": {
+    "rating": "PG",
+    "overstimulation": "medium",
+    "sensoryNotes": "Contains some rapid motion and bright colors."
   }
 }
