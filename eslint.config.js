@@ -1,41 +1,31 @@
-import js from "@eslint/js";
+const js = require("@eslint/js");
 
-export default [
-  // Base recommended rules
-  js.configs.recommended,
+const baseConfig = js.configs.recommended;
 
-  // Browser/client code
+module.exports = [
+  baseConfig,
   {
-    files: ["client/**/*.js"],
+    files: ["client/**/*.js", "scripts/**/*.js"],
+    ignores: [
+      "dist/**",
+      "node_modules/**",
+      "scripts/validate-schema.js"
+    ],
     languageOptions: {
       ecmaVersion: 2020,
-      sourceType: "module",
+      sourceType: "script",
       globals: {
+        // Browser-side globals
         window: "readonly",
         document: "readonly",
         console: "readonly",
-        fetch: "readonly",
-        URL: "readonly"
-      }
-    },
-    rules: {
-      // We *want* console in a small demo client
-      "no-console": "off"
-    }
-  },
 
-  // Node scripts (validation, etc.)
-  {
-    files: ["scripts/**/*.js"],
-    languageOptions: {
-      ecmaVersion: 2020,
-      sourceType: "commonjs",
-      globals: {
-        require: "readonly",
-        module: "readonly",
-        __dirname: "readonly",
+        // Node-side globals for scripts
         process: "readonly",
-        console: "readonly"
+        module: "readonly",
+        require: "readonly",
+        __dirname: "readonly",
+        __filename: "readonly"
       }
     },
     rules: {
