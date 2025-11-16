@@ -2,6 +2,7 @@
   "name": "arka-client",
   "version": "0.1.0",
   "description": "Reference static web client for the arkA protocol",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "rollup -c",
@@ -9,17 +10,25 @@
     "lint": "eslint client/**/*.js scripts/**/*.js",
     "lint:schema": "npm run validate",
     "test": "echo \"No tests yet\"",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "lint:md": "markdownlint '**/*.md'"
   },
   "devDependencies": {
     "@eslint/js": "^9.0.0",
-    "@rollup/plugin-commonjs": "^26.0.0",
-    "@rollup/plugin-node-resolve": "^15.0.0",
-    "ajv": "^8.12.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-commonjs": "^25.0.8",
+    "@rollup/plugin-json": "^6.0.1",
+
     "eslint": "^9.0.0",
-    "gh-pages": "^6.3.0",
-    "markdownlint-cli": "^0.40.0",
-    "rollup": "^4.24.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-browser": "^1.0.3",
+
+    "ajv": "^8.12.0",
+    "gh-pages": "^5.0.0",
+    "markdownlint-cli": "^0.41.0",
+
+    "rollup": "^3.29.4",
+    "typescript": "^5.4.0",
     "vite": "^5.0.0"
   }
 }
