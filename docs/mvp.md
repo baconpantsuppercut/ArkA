@@ -24,10 +24,6 @@ Stored at:
 ### 2. Index Schema (JSON)
 A JSON file listing all videos.
 
-Example:
-```md
-Some text
-
 ```json
 [
   {
