@@ -1,10 +1,10 @@
 {
-  "id": "video-dash-001",
-  "title": "DASH streaming example",
-  "description": "Video using MPEG-DASH manifest.",
-  "createdAt": "2025-01-01T00:00:00Z",
-  "thumbnail": "https://example.com/thumbs/dash.jpg",
-  "duration": 320,
+  "id": "video-dash-demo",
+  "title": "DASH Streaming Demo",
+  "description": "Example video that uses MPEG-DASH for adaptive streaming.",
+  "createdAt": "2025-01-03T00:00:00Z",
+  "thumbnail": "https://example.com/thumbnails/dash-demo.jpg",
+  "durationSeconds": 360,
   "sources": [
     {
       "storageType": "http",
@@ -12,6 +12,16 @@
     }
   ],
   "streaming": {
-    "dash": "https://example.com/dash/manifest.mpd"
+    "dash": "https://example.com/videos/dash/manifest.mpd"
+  },
+  "creator": {
+    "name": "Example Creator",
+    "avatar": "https://example.com/avatars/example-creator.png",
+    "contact": "mailto:creator@example.com"
+  },
+  "safety": {
+    "rating": "PG",
+    "overstimulation": "medium",
+    "sensoryNotes": "Some dynamic camera movement and scene cuts."
   }
 }
