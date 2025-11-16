@@ -1,19 +1,24 @@
 {
-  "id": "video-kids-lesson-001",
-  "title": "Calm learning session for kids",
-  "description": "Slow-paced, low-stimulation educational content for young children.",
-  "createdAt": "2025-01-01T00:00:00Z",
-  "thumbnail": "https://example.com/thumbs/kids.jpg",
-  "duration": 600,
+  "id": "video-kids-lesson-demo",
+  "title": "Kids Lesson: Calm Learning Session",
+  "description": "A gentle, structured educational video designed for neurodiverse children.",
+  "createdAt": "2025-01-04T00:00:00Z",
+  "thumbnail": "https://example.com/thumbnails/kids-lesson.jpg",
+  "durationSeconds": 600,
   "sources": [
     {
       "storageType": "http",
       "uri": "https://example.com/videos/kids-lesson.mp4"
     }
   ],
+  "creator": {
+    "name": "arkA Kids Example Channel",
+    "avatar": "https://example.com/avatars/arka-kids.png",
+    "contact": "mailto:kids@example.com"
+  },
   "safety": {
     "rating": "G",
     "overstimulation": "low",
-    "sensoryNotes": "Soft colors, gentle music, no flashing lights."
+    "sensoryNotes": "Slow pacing, soft colors, no loud sounds, no flashing lights."
   }
 }
