@@ -1,32 +1,27 @@
-import js from "@eslint/js";
+// eslint.config.js
+// Flat config for ESLint 9, using CommonJS so Node can load it without drama.
 
 /** @type {import("eslint").Linter.FlatConfig[]} */
-export default [
+const js = require("@eslint/js");
+
+module.exports = [
   {
-    // Base recommended rules
+    // Start from ESLint's recommended rules
     ...js.configs.recommended,
-
-    // Ignore build artifacts
-    ignores: ["dist/**", "node_modules/**"],
-
+    files: ["client/**/*.js", "scripts/**/*.js"],
     languageOptions: {
-      ecmaVersion: 2022,
-      sourceType: "module",
-
-      // Tell ESLint which globals exist so "no-undef" stops shouting
       globals: {
-        // Browser globals (client/js/main.js)
-        window: "readonly",
+        // Browser globals
         document: "readonly",
+        window: "readonly",
         fetch: "readonly",
+        // Common JS / Node globals used in scripts
         console: "readonly",
-
-        // Node globals (scripts/*.js)
-        require: "readonly",
-        module: "readonly",
-        __dirname: "readonly",
         process: "readonly",
-      },
+        module: "readonly",
+        require: "readonly"
+      }
     },
-  },
+    ignores: ["dist/**", "node_modules/**"]
+  }
 ];
