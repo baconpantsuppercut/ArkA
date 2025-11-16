@@ -2,13 +2,28 @@ name: Deploy Reference Client
 
 on:
   push:
-    branches: ["main"]
+    branches: [ main ]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
       - name: Install dependencies
         run: npm install
@@ -16,10 +31,18 @@ jobs:
       - name: Build client
         run: npm run build
 
-      - name: Deploy to GitHub Pages
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: client/dist
+          path: dist
 
-      - name: Publish
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
