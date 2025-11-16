@@ -1,43 +1,38 @@
-/* eslint-env node */
+/* eslint-disable no-console */
 
 const fs = require("fs");
 const path = require("path");
 const Ajv = require("ajv");
 
-const ajv = new Ajv({
-  allErrors: true,
-  strict: false, // don't treat warnings (like unknown formats) as fatal
-});
+// Ajv instance
+const ajv = new Ajv({ allErrors: true });
 
+// Paths
 const schemaPath = path.join(__dirname, "..", "schema", "video.schema.json");
 const examplesDir = path.join(__dirname, "..", "examples");
 
+// Load schema
 const schemaRaw = fs.readFileSync(schemaPath, "utf8");
 const schema = JSON.parse(schemaRaw);
 const validate = ajv.compile(schema);
 
-console.log("Validating example files against schema...");
+console.log("Validating example *video* files against schema...");
 
-// Only validate actual *video* examples, not the collection index.
-const files = fs
+// Only validate files that start with "video-" and end with ".json"
+const exampleFiles = fs
   .readdirSync(examplesDir)
-  .filter(
-    (name) =>
-      name.endsWith(".json") &&
-      name !== "index.json" // <– skip index.json for now; it has a different shape
-  );
+  .filter((file) => file.startsWith("video-") && file.endsWith(".json"));
 
-let hasError = false;
+let hadError = false;
 
-for (const file of files) {
+for (const file of exampleFiles) {
   const fullPath = path.join(examplesDir, file);
   const dataRaw = fs.readFileSync(fullPath, "utf8");
   const data = JSON.parse(dataRaw);
 
-  const ok = validate(data);
-
-  if (!ok) {
-    hasError = true;
+  const valid = validate(data);
+  if (!valid) {
+    hadError = true;
     console.error(`❌ ${file} is INVALID:`);
     console.error(validate.errors);
   } else {
@@ -45,9 +40,9 @@ for (const file of files) {
   }
 }
 
-if (hasError) {
+if (hadError) {
   console.error("❌ One or more example files failed validation.");
   process.exit(1);
+} else {
+  console.log("✅ All example video files passed validation.");
 }
-
-console.log("✅ All example files passed validation.");
