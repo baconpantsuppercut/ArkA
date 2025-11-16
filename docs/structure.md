@@ -33,7 +33,7 @@
 └─ package.json
 ```
 
-### Purpose Summary
+## Purpose Summary
 - **docs/** = all documentation.
 - **schema/** = core JSON schemas.
 - **examples/** = real-world example files.
