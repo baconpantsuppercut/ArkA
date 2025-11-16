@@ -17,14 +17,14 @@ arkA is simply **a protocol** for free expression.
 
 ---
 
-## 1. Expression belongs to people, not platforms.
+## 1. Expression belongs to people, not platforms
 
 arkA is built on the belief that communication should not be dependent on corporate permission.  
 The world needs spaces where full human expression can exist — even expression some may dislike.
 
 ---
 
-## 2. Creators should own their work and their income.
+## 2. Creators should own their work and their income
 
 You built the content.  
 You built the audience.  
@@ -51,7 +51,7 @@ It aims for:
 
 ---
 
-## 4. Protocols > Platforms.
+## 4. Protocols > Platforms
 
 HTTP, SMTP, and RSS changed the world by being open.
 
@@ -66,7 +66,7 @@ It cannot be captured.
 
 ---
 
-## 5. Simplicity first.
+## 5. Simplicity first
 
 The MVP of arkA is intentionally small:
 - a JSON schema  
@@ -78,7 +78,7 @@ From simplicity grows ecosystems.
 
 ---
 
-## 6. The community decides the future.
+## 6. The community decides the future
 
 arkA is not a company.  
 arkA is an invitation.  
