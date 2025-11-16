@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://arka.video/schema/index.schema.json",
+  "title": "arkA Index Schema",
+  "description": "Index of videos for arkA protocol examples",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "arka_version": {
+      "type": "string",
+      "description": "Protocol version string, e.g. '0.1.0'."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO timestamp for when this index was generated."
+    },
+    "publisher": {
+      "type": "object",
+      "description": "Publisher metadata for this index.",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Human-readable publisher name."
+        },
+        "url": {
+          "type": "string",
+          "description": "URL for the publisher or project home."
+        }
+      },
+      "required": ["name"]
+    },
+    "videos": {
+      "type": "array",
+      "description": "List of video entries included in this index.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "ID of the video (matches the video JSON's `id` field)."
+          },
+          "title": {
+            "type": "string",
+            "description": "Optional human-readable title for quick listing."
+          },
+          "metadataUrl": {
+            "type": "string",
+            "description": "URL or relative path to the full video metadata JSON file."
+          }
+        },
+        "required": ["id", "metadataUrl"]
+      }
+    }
+  },
+  "required": ["arka_version", "created_at", "publisher", "videos"]
+}
