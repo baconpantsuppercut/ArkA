@@ -1,49 +1,60 @@
-// scripts/validate-all.js
-// Validate arkA example video metadata against schema/video.schema.json
+/* eslint-env node */
 
 const fs = require("fs");
 const path = require("path");
-const Ajv = require("ajv");
+const Ajv = require("ajv").default;
 
+// Configure AJV once
 const ajv = new Ajv({
   allErrors: true,
   strict: false
 });
 
-// Load the schema
 const schemaPath = path.join(__dirname, "..", "schema", "video.schema.json");
-const schemaRaw = fs.readFileSync(schemaPath, "utf8");
-const schema = JSON.parse(schemaRaw);
-const validate = ajv.compile(schema);
-
 const examplesDir = path.join(__dirname, "..", "examples");
 
-// Only validate per-video example files (video-*.json)
-const exampleFiles = fs
-  .readdirSync(examplesDir)
-  .filter((name) => name.startsWith("video-") && name.endsWith(".json"));
+function loadJSON(filePath) {
+  const raw = fs.readFileSync(filePath, "utf8");
+  return JSON.parse(raw);
+}
 
-let hasErrors = false;
-
-for (const file of exampleFiles) {
-  const fullPath = path.join(examplesDir, file);
-  const data = JSON.parse(fs.readFileSync(fullPath, "utf8"));
+function validateExample(fileName, validate) {
+  const dataPath = path.join(examplesDir, fileName);
+  const data = loadJSON(dataPath);
 
   const valid = validate(data);
 
-  if (!valid) {
-    hasErrors = true;
-    console.log(`${fullPath} invalid`);
-    console.log(validate.errors);
-    console.log();
+  if (valid) {
+    console.log(`✅ ${fileName} is valid.`);
   } else {
-    console.log(`${fullPath} ✔ valid`);
+    console.error(`❌ ${fileName} is INVALID:`);
+    console.error(validate.errors);
+    // Mark process as failed, but keep checking other files
+    process.exitCode = 1;
   }
 }
 
-if (hasErrors) {
-  console.error("❌ Some example files FAILED validation.");
-  process.exit(1);
-} else {
-  console.log("✅ All per-video example files passed validation.");
+function main() {
+  console.log("Validating example files against schema...");
+
+  // Load and compile schema once
+  const schema = loadJSON(schemaPath);
+  const validate = ajv.compile(schema);
+
+  const files = fs
+    .readdirSync(examplesDir)
+    .filter((f) => f.endsWith(".json"));
+
+  files.forEach((fileName) => {
+    validateExample(fileName, validate);
+  });
+
+  if (process.exitCode) {
+    console.error("❌ One or more example files failed validation.");
+    process.exit(process.exitCode);
+  } else {
+    console.log("✅ All example files validated successfully.");
+  }
 }
+
+main();
