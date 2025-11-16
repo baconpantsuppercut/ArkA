@@ -26,4 +26,4 @@ jobs:
         run: npm run lint
 
       - name: Lint Markdown
-        run: npx markdownlint-cli "**/*.md"
+        run: npm run lint:md
