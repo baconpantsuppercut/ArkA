@@ -4,45 +4,69 @@ const fs = require("fs");
 const path = require("path");
 const Ajv = require("ajv");
 
-// Ajv instance
-const ajv = new Ajv({ allErrors: true });
+// Configure Ajv
+const ajv = new Ajv({
+  allErrors: true,
+  strict: false
+});
 
-// Paths
-const schemaPath = path.join(__dirname, "..", "schema", "video.schema.json");
-const examplesDir = path.join(__dirname, "..", "examples");
+// Load schemas
+const videoSchemaPath = path.resolve(__dirname, "../schema/video.schema.json");
+const indexSchemaPath = path.resolve(__dirname, "../schema/index.schema.json");
 
-// Load schema
-const schemaRaw = fs.readFileSync(schemaPath, "utf8");
-const schema = JSON.parse(schemaRaw);
-const validate = ajv.compile(schema);
+const videoSchema = JSON.parse(fs.readFileSync(videoSchemaPath, "utf8"));
+const indexSchema = JSON.parse(fs.readFileSync(indexSchemaPath, "utf8"));
 
-console.log("Validating example *video* files against schema...");
+const validateVideo = ajv.compile(videoSchema);
+const validateIndex = ajv.compile(indexSchema);
 
-// Only validate files that start with "video-" and end with ".json"
-const exampleFiles = fs
-  .readdirSync(examplesDir)
-  .filter((file) => file.startsWith("video-") && file.endsWith(".json"));
+const examplesDir = path.resolve(__dirname, "../examples");
 
-let hadError = false;
+// Utility: validate one file with the right schema
+function validateFile(filePath) {
+  const fileName = path.basename(filePath);
+  const isIndex = fileName === "index.json";
 
-for (const file of exampleFiles) {
-  const fullPath = path.join(examplesDir, file);
-  const dataRaw = fs.readFileSync(fullPath, "utf8");
-  const data = JSON.parse(dataRaw);
+  const raw = fs.readFileSync(filePath, "utf8");
+  const data = JSON.parse(raw);
+
+  const validate = isIndex ? validateIndex : validateVideo;
+  const schemaLabel = isIndex ? "index.schema.json" : "video.schema.json";
 
   const valid = validate(data);
-  if (!valid) {
-    hadError = true;
-    console.error(`❌ ${file} is INVALID:`);
-    console.error(validate.errors);
-  } else {
-    console.log(`✅ ${file} is valid.`);
+
+  if (valid) {
+    console.log(`✅ ${fileName} is valid against ${schemaLabel}.`);
+    return true;
   }
+
+  console.error(`❌ ${fileName} is INVALID:`);
+  console.error(validate.errors);
+  return false;
 }
 
-if (hadError) {
-  console.error("❌ One or more example files failed validation.");
-  process.exit(1);
-} else {
-  console.log("✅ All example video files passed validation.");
-}
+// Main
+(function run() {
+  console.log("Validating example files against schema...");
+
+  const files = fs
+    .readdirSync(examplesDir)
+    .filter((f) => f.endsWith(".json"));
+
+  let allValid = true;
+
+  for (const file of files) {
+    const fullPath = path.join(examplesDir, file);
+    const ok = validateFile(fullPath);
+    if (!ok) {
+      allValid = false;
+    }
+  }
+
+  if (!allValid) {
+    console.error("❌ One or more example files failed validation.");
+    process.exit(1);
+  } else {
+    console.log("✅ All example files passed validation.");
+  }
+})();
