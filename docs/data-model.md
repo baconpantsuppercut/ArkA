@@ -1,4 +1,4 @@
-# arkA Video Data Model (v1 draft)
+# arkA Video Data Model (v1 draft) for the win
 
 This document defines the **core video metadata model** for arkA.
 
