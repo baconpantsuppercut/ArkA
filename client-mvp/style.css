@@ -1,0 +1,244 @@
+/* arkA MVP – simple, readable styling */
+
+:root {
+  --bg: #050711;
+  --bg-card: #101322;
+  --bg-card-secondary: #141829;
+  --accent: #5ae0b5;
+  --accent-soft: rgba(90, 224, 181, 0.15);
+  --text: #f8fafc;
+  --text-muted: #9ca3af;
+  --danger: #f97373;
+  --border: #1f2933;
+  --radius: 12px;
+  --shadow: 0 18px 45px rgba(0, 0, 0, 0.5);
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Segoe UI", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  background: radial-gradient(circle at top, #111827 0, #020617 55%, #000 100%);
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  padding: 1.5rem 1.25rem 0.75rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.25rem;
+}
+
+.logo-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+}
+
+.brand-text {
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.tagline {
+  margin: 0;
+  margin-top: 0.25rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.main {
+  flex: 1;
+  padding: 0.5rem 1.25rem 2rem;
+  max-width: 960px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 3fr);
+  gap: 1rem;
+}
+
+@media (min-width: 900px) {
+  .main {
+    grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.4fr);
+  }
+}
+
+.card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 1.25rem 1.5rem 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+.card-secondary {
+  background: var(--bg-card-secondary);
+}
+
+h1,
+h2 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+}
+
+p {
+  margin: 0.25rem 0;
+}
+
+ul {
+  margin: 0.5rem 0 0.25rem;
+  padding-left: 1.25rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.note {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.cid-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.label {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.label-inline {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.hint {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.input {
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  padding: 0.6rem 0.9rem;
+  background: #020617;
+  color: var(--text);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease,
+    background 0.12s ease;
+}
+
+.input::placeholder {
+  color: #6b7280;
+}
+
+.input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px rgba(90, 224, 181, 0.5);
+  background: #020617;
+}
+
+.button {
+  border-radius: 999px;
+  border: none;
+  padding: 0.7rem 1rem;
+  margin-top: 0.25rem;
+  background: linear-gradient(120deg, var(--accent), #4ade80);
+  color: #020617;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  transition: transform 0.08s ease, box-shadow 0.08s ease,
+    filter 0.08s ease;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+.button:hover {
+  filter: brightness(1.03);
+  transform: translateY(-1px);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.55);
+}
+
+.button:active {
+  transform: translateY(0);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+}
+
+.status {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  min-height: 1.1em;
+}
+
+.status-error {
+  color: var(--danger);
+}
+
+.video-container {
+  margin-top: 0.75rem;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #111827;
+  background: #020617;
+  position: relative;
+}
+
+.video {
+  width: 100%;
+  max-height: 60vh;
+  display: block;
+  background: #000;
+}
+
+.footer {
+  padding: 0.75rem 1.25rem 1.2rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.footer a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
