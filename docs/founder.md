@@ -124,7 +124,7 @@ arkA is committed to making that a reality.
 
 ---
 
-## ❤️ The Heart of arkA
+## ❤️ The Heart of arkA !
 
 arkA is not just an engineering project.  
 It is a human one.
