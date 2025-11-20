@@ -1,52 +1,146 @@
-<section class="card card-secondary">
-  <h2>📦 arkA MVP – Decentralized Video Demo (Phase 2)</h2>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>arkA – Decentralized Video Protocol (MVP)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <p>
-    This section shows the brand-new Phase-2 announcement video, stored entirely on
-    <strong>IPFS</strong> and playable through <em>any</em> gateway or client.
-    arkA does not depend on any specific platform — only on content addressing.
-  </p>
+    <meta
+      name="description"
+      content="arkA MVP – A decentralized, storage-agnostic video protocol using IPFS."
+    />
 
-  <h3>🚀 arkA Client Viewer Link (Official Demo)</h3>
-  <p>This link loads the Phase-2 video directly inside the arkA MVP interface:</p>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
 
-  <pre class="code-block">
+  <body>
+    <header class="header">
+      <div class="brand">
+        <span class="logo-mark">A</span>
+        <span class="brand-text">arkA MVP</span>
+      </div>
+      <p class="tagline">
+        Open, storage-agnostic video • Play anything by CID • No accounts • No platform
+      </p>
+    </header>
+
+    <main class="main">
+      <!-- =============================== -->
+      <!--          CID INPUT FORM         -->
+      <!-- =============================== -->
+
+      <section class="card">
+        <h2>🎥 Play Any IPFS Video</h2>
+        <p>
+          Enter an IPFS <strong>CID</strong> or a <strong>gateway URL</strong> to load a
+          decentralized video using the arkA MVP client.
+        </p>
+
+        <form id="cid-form" class="cid-form">
+          <label for="cid-input" class="label">CID or IPFS URL</label>
+          <input
+            id="cid-input"
+            class="input"
+            type="text"
+            placeholder="Paste CID or IPFS URL…"
+            autocomplete="off"
+          />
+
+          <label for="gateway-input" class="label" style="margin-top: 0.5rem;">
+            Preferred Gateway (optional)
+          </label>
+          <input
+            id="gateway-input"
+            class="input"
+            type="text"
+            placeholder="https://ipfs.io/ipfs/"
+          />
+
+          <button type="submit" class="button" style="margin-top: 1rem;">
+            ▶ Load Video
+          </button>
+
+          <p id="status" class="status" aria-live="polite"></p>
+        </form>
+
+        <div class="video-container">
+          <video
+            id="video-player"
+            class="video"
+            controls
+            playsinline
+          >
+            Your browser does not support the video element.
+          </video>
+        </div>
+      </section>
+
+      <!-- =============================== -->
+      <!--     PHASE-2 ANNOUNCEMENT DEMO   -->
+      <!-- =============================== -->
+
+      <section class="card card-secondary">
+        <h2>📦 arkA MVP – Phase 2 Decentralized Video Demo</h2>
+
+        <p>
+          This section showcases the Phase-2 announcement video, stored fully on
+          <strong>IPFS</strong> and playable through any gateway or client.
+        </p>
+
+        <h3>🚀 Official arkA Demo Link (Auto-Loads Video)</h3>
+        <pre class="code-block">
 https://baconpantsuppercut.github.io/arkA/?cid=bafybeigxoxlscrc73aatxasygtxrjsjcwzlvts62gyr76ir5edk5fedq3q
-  </pre>
+        </pre>
 
-  <p>
-    This is the link you should share publicly. It demonstrates the full arkA flow:
-    <strong>client → metadata → IPFS → gateway → playback</strong>.
-  </p>
+        <p>This is the recommended link to share publicly.</p>
 
-  <h3>🌐 Raw IPFS Gateway URLs (Direct Video Links)</h3>
-  <p>These links all play the <strong>same video</strong>, proving decentralized access:</p>
+        <h3>🌐 Raw IPFS Gateway Links</h3>
+        <p>All of these resolve the <strong>same video</strong> via decentralized storage:</p>
 
-  <p><strong>IPFS.io (Protocol Labs):</strong></p>
-  <pre class="code-block">
+        <strong>IPFS.io</strong>
+        <pre class="code-block">
 https://ipfs.io/ipfs/bafybeigxoxlscrc73aatxasygtxrjsjcwzlvts62gyr76ir5edk5fedq3q
-  </pre>
+        </pre>
 
-  <p><strong>Cloudflare IPFS Gateway:</strong></p>
-  <pre class="code-block">
+        <strong>Cloudflare-IPFS</strong>
+        <pre class="code-block">
 https://cloudflare-ipfs.com/ipfs/bafybeigxoxlscrc73aatxasygtxrjsjcwzlvts62gyr76ir5edk5fedq3q
-  </pre>
+        </pre>
 
-  <p><strong>Pinata Gateway (Your node):</strong></p>
-  <pre class="code-block">
+        <strong>Pinata</strong>
+        <pre class="code-block">
 https://gateway.pinata.cloud/ipfs/bafybeigxoxlscrc73aatxasygtxrjsjcwzlvts62gyr76ir5edk5fedq3q
-  </pre>
+        </pre>
 
-  <h3>🧠 What This Demonstrates</h3>
-  <ul>
-    <li>The video is not stored or owned by any platform.</li>
-    <li>The CID is globally addressable via any IPFS gateway.</li>
-    <li>arkA can play content from <strong>any storage location</strong>.</li>
-    <li>This creates a censorship-resistant, protocol-based media layer.</li>
-    <li>Anyone can host content; anyone can build a client.</li>
-  </ul>
+        <h3>🧠 What This Proves</h3>
+        <ul>
+          <li>Video is not owned or stored by any platform.</li>
+          <li>Content is globally addressable via CID.</li>
+          <li>Multiple gateways can fetch the same content.</li>
+          <li>arkA decouples <strong>client</strong> from <strong>storage</strong>.</li>
+          <li>This is a fully decentralized, censorship-resistant workflow.</li>
+        </ul>
 
-  <p>
-    This Phase-2 video is the official arkA announcement and the first fully public decentralized demo.
-  </p>
-</section>
+        <p>
+          This is the first full, public, end-to-end demonstration of the arkA
+          decentralized video protocol.
+        </p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <small>
+        arkA Protocol • Open-Source • GitHub:
+        <a
+          href="https://github.com/baconpantsuppercut/arkA"
+          target="_blank"
+          rel="noopener"
+        >
+          github.com/baconpantsuppercut/arkA
+        </a>
+      </small>
+    </footer>
+
+    <script src="./mvp.js" type="module"></script>
+  </body>
+</html>
